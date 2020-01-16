@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
-import Home from '../../home/store/reducers';
-export default combineReducers({
-    Home
-})
+import  home from '../../home/store/reducers/home.reducers';
+
+const createReducer = (asyncReducers) =>
+    combineReducers({
+        home
+    });
+export default createReducer;

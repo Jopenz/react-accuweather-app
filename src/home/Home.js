@@ -32,14 +32,16 @@ class Home extends Component {
 
     render() {
         const { search } = this.state;
+        const { cities } = this.props;
         return (
             <div className='flex flex-col w-full h-full'>
                 <div className='flex justify-center content-center items-center'>
-                    <Paper style={{ width : 320 }} className='flex m-20 pl-6 justify-between' >
+                    <Paper style={{ width : 320 }} className='flex m-10 pl-6 justify-between' >
                         <InputBase
                             fullWidth
                             value={search}
                             placeholder="Search City"
+                            onChange={this.handleChange('search')}
                             onKeyDown={this.handleEnterSearch}
                             inputProps={{ 'aria-label': 'search city' }}
                         />
@@ -49,7 +51,7 @@ class Home extends Component {
                     </Paper>
                 </div>
                 <div className='flex flex-1'>
-                    {/* { this.props.cities.lenght } */}
+                    { cities ? cities.length : null }
                 </div>
             </div>
         );
@@ -57,15 +59,15 @@ class Home extends Component {
 }
 
 const mapStateToProps = ({ home }) =>{
-    // return {
-    //     cities : home.cities
-    // }
+    return {
+        cities : home.cities
+    }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        searchCity : Actions.searchCity
-    });
+        searchCity : Actions.searchCity,
+    },dispatch);
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Home);

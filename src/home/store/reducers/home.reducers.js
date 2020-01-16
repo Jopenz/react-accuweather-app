@@ -12,7 +12,7 @@ const homeReducer = function (state = initialState, action) {
                 cities: action.payload
             };
         }
-        case Actions.SEARCH_CITY: 
+        case Actions.SEARCH_CITY:
         default: {
             return state;
         }

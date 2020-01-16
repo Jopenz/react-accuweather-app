@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './App';
-import rootReducer from './store/reducers'
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './theme/theme';
 import './tailwind.css';
-
-const store = createStore(rootReducer)
+import store from './store';
 
 ReactDOM.render(
     <Provider store={store}>

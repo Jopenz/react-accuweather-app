@@ -10,15 +10,14 @@ export function searchCity(name) {
         dispatch({
             type: SEARCH_CITY
         })
-        return dispatch => {
-            CityService.searchCity(name).then(cities => {
-                dispatch({
-                    type: SET_CITIES,
-                    payload: cities
-                })
-            }).catch(err => {
-                console.error(err);
+        CityService.searchCity(name).then(cities => {
+            console.log(cities);
+            dispatch({
+                type: SET_CITIES,
+                payload: cities
             })
-        }
+        }).catch(err => {
+            console.error(err);
+        })
     }
 }
