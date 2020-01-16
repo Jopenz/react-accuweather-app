@@ -11,7 +11,6 @@ export function searchCity(name) {
             type: SEARCH_CITY
         })
         CityService.searchCity(name).then(cities => {
-            console.log(cities);
             dispatch({
                 type: SET_CITIES,
                 payload: cities
