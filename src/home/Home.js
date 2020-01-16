@@ -2,31 +2,70 @@ import React, { Component } from 'react';
 import { Paper, InputBase } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import * as Actions from './store/actions';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {  };
+        this.state = {  
+            search : ''
+        };
     }
+
+    handleChange = name => e => {
+        this.setState({ [name]: e.target.value});
+    }
+
+    handleEnterSearch = e => {
+        if(e.key === 'Enter'){
+            this.props.searchCity(this.state.search);
+        }
+    }
+    handleClickSearch = e => {
+        if(e.key === 'Enter'){
+            this.props.searchCity(this.state.search);
+        }
+    }
+
+
     render() {
+        const { search } = this.state;
         return (
             <div className='flex flex-col w-full h-full'>
                 <div className='flex justify-center content-center items-center'>
                     <Paper style={{ width : 320 }} className='flex m-20 pl-6 justify-between' >
                         <InputBase
                             fullWidth
+                            value={search}
                             placeholder="Search City"
+                            onKeyDown={this.handleEnterSearch}
                             inputProps={{ 'aria-label': 'search city' }}
                         />
-                         <IconButton type="submit" className={''} aria-label="search">
+                         <IconButton type="submit" className={''} onClick={this.handleClickSearch } aria-label="search">
                             <SearchIcon />
                         </IconButton>
                     </Paper>
                 </div>
-                <div className='flex flex-1'></div>
+                <div className='flex flex-1'>
+                    {/* { this.props.cities.lenght } */}
+                </div>
             </div>
         );
     }
 }
 
-export default Home;
+const mapStateToProps = ({ home }) =>{
+    // return {
+    //     cities : home.cities
+    // }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        searchCity : Actions.searchCity
+    });
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
