@@ -34,25 +34,28 @@ class Home extends Component {
         const { search } = this.state;
         const { cities } = this.props;
         return (
-            <div className='flex flex-col w-full h-full'>
-                <div className='flex justify-center content-center items-center'>
-                    <Paper style={{ width : 320 }} className='flex m-10 pl-6 justify-between' >
-                        <InputBase
-                            fullWidth
-                            value={search}
-                            placeholder="Search City"
-                            onChange={this.handleChange('search')}
-                            onKeyDown={this.handleEnterSearch}
-                            inputProps={{ 'aria-label': 'search city' }}
-                        />
-                         <IconButton type="submit" className={''} onClick={this.handleClickSearch } aria-label="search">
-                            <SearchIcon />
-                        </IconButton>
-                    </Paper>
+            <div className='flex w-full h-full'>
+                <div className='flex flex-col w-1/3'>
+                    <div className='flex w-full p-10'>
+                        <Paper style={{ width : 320 }} className='flex m-10 pl-6 justify-between' >
+                            <InputBase
+                                fullWidth
+                                value={search}
+                                placeholder="Search City"
+                                onChange={this.handleChange('search')}
+                                onKeyDown={this.handleEnterSearch}
+                                inputProps={{ 'aria-label': 'search city' }}
+                            />
+                            <IconButton type="submit" className={''} onClick={this.handleClickSearch } aria-label="search">
+                                <SearchIcon />
+                            </IconButton>
+                        </Paper>
+                    </div>
+                    <div className='flex flex-1'>
+                        { cities ? cities.length : null }
+                    </div>
                 </div>
-                <div className='flex flex-1'>
-                    { cities ? cities.length : null }
-                </div>
+                <div className='w-2/3'></div>
             </div>
         );
     }
