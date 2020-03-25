@@ -1,8 +1,9 @@
 
 
 import { CityService } from '../../../services';
-export const SEARCH_CITY = "[CITY] SEARCH";
-export const SET_CITIES = "[CITY] SEARCH";
+
+export const SEARCH_CITY = "[CITY] SEARCH ACTION";
+export const SET_CITIES = "[CITY] SET SEARCH";
 
 
 export function searchCity(name) {

@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
-import { Paper, InputBase } from '@material-ui/core';
+import { Paper, InputBase, List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import * as Actions from './store/actions';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {  
-            search : ''
+            search : '',
+            pepe: ''
         };
     }
+
 
     handleChange = name => e => {
         this.setState({ [name]: e.target.value});
@@ -52,7 +55,22 @@ class Home extends Component {
                         </Paper>
                     </div>
                     <div className='flex flex-1'>
-                        { cities ? cities.length : null }
+                        <List className='w-full'>
+                        { 
+                            cities.length > 0 ? 
+                                cities.map(city=> {
+                                return <ListItem button>
+                                            <ListItemAvatar>
+                                                <Avatar>{ city.LocalizedName[0] }</Avatar>
+                                            </ListItemAvatar>
+                                            <ListItemText primary={city.LocalizedName} secondary={city.Country.LocalizedName} />
+                                        </ListItem>
+                                }) 
+                            : 
+                                null 
+                        }
+                        </List>
+                        
                     </div>
                 </div>
                 <div className='w-2/3'></div>
